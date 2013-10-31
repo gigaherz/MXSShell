@@ -1,13 +1,15 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
+/Debug
+/Release
+/ipch
+/_UpgradeReport_Files
+/_ReSharper.*
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
+UpgradeLog*.xml
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+*.user
+*.ncb
+*.sdf
+*.opensdf
+*.suo
+*.idc
+*.old

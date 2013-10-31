@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Base">
+      <UniqueIdentifier>{14f900eb-1b76-4628-852a-f0c52440196c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InternalCmds">
+      <UniqueIdentifier>{64d384a6-7446-4421-9864-74fe14291e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Streaming">
+      <UniqueIdentifier>{6156bd7b-1dd1-438d-911b-e57f0881c98a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pwd.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="Precompiled.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="echo.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="Environment.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Exec.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="String.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="cd.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="set.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="crlf.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="concat.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="exit.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="Reader.cpp">
+      <Filter>Streaming</Filter>
+    </ClCompile>
+    <ClCompile Include="ls.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ShellApi.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Streaming.h">
+      <Filter>Streaming</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
