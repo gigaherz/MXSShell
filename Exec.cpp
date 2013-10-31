@@ -59,7 +59,7 @@ bool Exec::FindProgram(String &dest, String name)
 	Str::SplitLine(ppath,path,_T(';'));
 	Str::SplitLine(pext,exts,_T(';'));
 
-	if(PathFileHasExtension(name)||(pext.size()==0)) //do not attempt to add an extension
+	if(Path::FileHasExtension(name)||(pext.size()==0)) //do not attempt to add an extension
 		for(StringVector::iterator pit=ppath.begin();pit!=ppath.end();pit++)
 		{
 			String cpath(*pit);

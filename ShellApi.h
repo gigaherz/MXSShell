@@ -46,9 +46,6 @@ class Command;
 //////////////////////////////////////////////////////////////////////////
 /// API functions
 
-// path.cpp
-bool PathFileHasExtension(const String &path);
-
 // exec.cpp
 // main.cpp
 namespace Exec
@@ -74,6 +71,13 @@ namespace Str
 	int  Replace(String &dest, String src, _TCHAR from, _TCHAR to);
 	void JoinVector(String &dest, StringVector data, size_t first, size_t last, int delim);
 	String::size_type SplitLine(StringVector &dest, String data, _TCHAR delim, bool keepQuotes=false);
+}
+
+// string.cpp
+namespace Path
+{
+    bool FileHasExtension(const String &path);
+    bool EnumerateDirectory(vector<String> fileNames);
 }
 
 

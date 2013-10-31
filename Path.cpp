@@ -1,6 +1,6 @@
 #include "ShellApi.h"
 
-bool PathFileHasExtension(const String &path)
+bool Path::FileHasExtension(const String &path)
 {
 	String::size_type a,b,c;
 
@@ -13,4 +13,39 @@ bool PathFileHasExtension(const String &path)
 	if(c<a) return false;
 
 	return true;
+}
+
+bool Path::EnumerateDirectory(vector<String> fileNames)
+{
+    WIN32_FIND_DATA ffd;
+    String pwd;
+
+    Environment::LoadCurrentDirectory(pwd);
+
+    pwd.append(_T("\\*"));
+
+    HANDLE hFind = FindFirstFile(pwd.c_str(), &ffd);
+    if (hFind == INVALID_HANDLE_VALUE)
+    {
+        _tcout << _T("ERROR: Could not enumerate directory: ") << GetLastError() << endl;
+        return false;
+    }
+
+    do
+    {
+        fileNames.push_back(ffd.cFileName);
+    } while (FindNextFile(hFind, &ffd) != 0);
+
+    do
+    {
+    } while (FindNextFile(hFind, &ffd) != 0);
+
+    DWORD dwError = GetLastError();
+    if (dwError != ERROR_NO_MORE_FILES)
+    {
+        _tcout << _T("ERROR: While enumerating directory: ") << dwError << endl;
+    }
+
+    FindClose(hFind);
+    return true;
 }
