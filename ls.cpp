@@ -14,37 +14,28 @@ public:
     virtual bool ExecCommand(StringVector params, String cmdline)
     {
         WIN32_FIND_DATA ffd;
-        HANDLE hFind = INVALID_HANDLE_VALUE;
-        DWORD dwError = 0;
-        TCHAR szDir[MAX_PATH];
         String pwd;
 
         Environment::LoadCurrentDirectory(pwd);
 
-        StringCchCopy(szDir, MAX_PATH, pwd.c_str());
-        StringCchCat(szDir, MAX_PATH, TEXT("\\*"));
-
-        // Find the first file in the directory.
-
-        hFind = FindFirstFile(szDir, &ffd);
-
-        if (INVALID_HANDLE_VALUE == hFind)
+        pwd.append(_T("\\*"));
+        
+        HANDLE hFind = FindFirstFile(pwd.c_str(), &ffd);
+        if (hFind == INVALID_HANDLE_VALUE)
         {
             _tcout << _T("ERROR: Could not enumerate directory: ") << GetLastError() << endl;
             return false;
         }
-
-        // List all the files in the directory with some info about them.
 
         do
         {
             _tcout << ffd.cFileName << endl;
         } while (FindNextFile(hFind, &ffd) != 0);
 
-        dwError = GetLastError();
+        DWORD dwError = GetLastError();
         if (dwError != ERROR_NO_MORE_FILES)
         {
-            _tcout << _T("ERROR: While enumerating directory: ") << GetLastError() << endl;
+            _tcout << _T("ERROR: While enumerating directory: ") << dwError << endl;
         }
 
         FindClose(hFind);
@@ -55,23 +46,14 @@ public:
     virtual bool ExecFunction(String &rettext, StringVector params, String cmdline)
     {
         WIN32_FIND_DATA ffd;
-        HANDLE hFind = INVALID_HANDLE_VALUE;
-        DWORD dwError = 0;
-        TCHAR szDir[MAX_PATH];
         String pwd;
 
         Environment::LoadCurrentDirectory(pwd);
 
-        rettext.clear();
+        pwd.append(_T("\\*"));
 
-        StringCchCopy(szDir, MAX_PATH, pwd.c_str());
-        StringCchCat(szDir, MAX_PATH, TEXT("\\*"));
-
-        // Find the first file in the directory.
-
-        hFind = FindFirstFile(szDir, &ffd);
-
-        if (INVALID_HANDLE_VALUE == hFind)
+        HANDLE hFind = FindFirstFile(pwd.c_str(), &ffd);
+        if (hFind == INVALID_HANDLE_VALUE)
         {
             _tcout << _T("ERROR: Could not enumerate directory: ") << GetLastError() << endl;
             return false;
@@ -89,10 +71,10 @@ public:
             first = false;
         } while (FindNextFile(hFind, &ffd) != 0);
 
-        dwError = GetLastError();
+        DWORD dwError = GetLastError();
         if (dwError != ERROR_NO_MORE_FILES)
         {
-            _tcout << _T("ERROR: While enumerating directory: ") << GetLastError() << endl;
+            _tcout << _T("ERROR: While enumerating directory: ") << dwError << endl;
         }
 
         FindClose(hFind);
