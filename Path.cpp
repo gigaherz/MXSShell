@@ -15,7 +15,7 @@ bool Path::FileHasExtension(const String &path)
 	return true;
 }
 
-bool Path::EnumerateDirectory(vector<String> fileNames)
+bool Path::EnumerateDirectory(StringVector fileNames)
 {
     WIN32_FIND_DATA ffd;
     String pwd;

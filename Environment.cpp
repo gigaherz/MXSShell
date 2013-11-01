@@ -43,26 +43,6 @@ bool Environment::LoadCurrentDirectory(String &dest)
 
 bool Environment::ChangeCurrrentDirectory(String NDir)
 {
-	/*
-	String NewDir;
-
-	Replace(NewDir,dir,_T('\\'),_T('/'));
-
-	StringVector NewDirComponents;
-	SplitLine(NewDirComponents,NewDir,_T('/'));
-
-	String CDir;
-
-	GetCurDir(CDir);
-
-	String CurDir;
-
-	Replace(CurDir,CDir,_T('\\'),_T('/'));
-
-	StringVector CurDirComponents;
-	SplitLine(CurDirComponents,CurDir,_T('/'));
-	*/
-
 	String CDir;
 
 	LoadCurrentDirectory(CDir);
@@ -75,5 +55,4 @@ bool Environment::ChangeCurrrentDirectory(String NDir)
 	SetCurrentDirectory(t);
 
 	return (GetLastError()!=0);
-
 }

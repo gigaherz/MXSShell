@@ -3,6 +3,8 @@
 
 #include <map>
 
+using namespace std;
+
 const String defexts(_T(".CMD;.BAT;.EXE"));
 const String defpath(_T("."));
 

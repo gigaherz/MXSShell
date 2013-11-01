@@ -1,5 +1,6 @@
 #include "ShellApi.h"
 
+using namespace std;
 
 bool Running;
 long ExitCode;
@@ -26,7 +27,7 @@ bool GetText(String &dest, String line, _TCHAR delim)
 
 	if(delim!=0)
 	{
-		_tcout<<"Syntax Error: End of line found in unfinished quoted string."<<endl;
+		_tcout << "Syntax Error: End of line found in unfinished quoted string." << endl;
 		return false;
 	}
 	return true;
@@ -215,7 +216,7 @@ bool ParseLine(String &dest, String &src, _TCHAR delim)
 
 	if(delim!=0)
 	{
-		_tcout<<"Syntax Error: Unexpected End of Line."<<endl;
+		_tcout << "Syntax Error: Unexpected End of Line." << endl;
 		return false;
 	}
 	return true;

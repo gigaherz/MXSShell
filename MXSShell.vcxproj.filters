@@ -57,6 +57,9 @@
     <ClCompile Include="ls.cpp">
       <Filter>InternalCmds</Filter>
     </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShellApi.h">
@@ -64,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="Streaming.h">
       <Filter>Streaming</Filter>
+    </ClInclude>
+    <ClInclude Include="UnicodeStuff.h">
+      <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,27 +1,6 @@
 #pragma once
 
-#pragma once
-
-#define UNICODE
-
-#if defined(UNICODE) && !defined(_UNICODE)
-#define _UNICODE
-#elif !defined(UNICODE)
-#undef _UNICODE
-#endif
-
-#include <iostream>
-#include <tchar.h>
-
-#ifdef _UNICODE
-#define _tcin wcin
-#define _tcout wcout
-#define _tcerr wcerr
-#else
-#define _tcin  cin
-#define _tcout cout
-#define _tcerr cerr
-#endif
+#include "UnicodeStuff.h"
 
 #include <shlwapi.h>
 #include <windows.h>
@@ -40,11 +19,15 @@ enum RegisterAs
 	RegisterAsFunction = 2,
 };
 
-// forward declaration
-class Command;
-
-//////////////////////////////////////////////////////////////////////////
-/// API functions
+// command.cpp
+class Command
+{
+public:
+    Command(String name, int regAs);
+    virtual bool ExecCommand(StringVector params, String cmdline);
+    virtual bool ExecFunction(String &rettext, StringVector params, String cmdline);
+    virtual bool SupportsPiping();
+};
 
 // exec.cpp
 // main.cpp
@@ -79,35 +62,3 @@ namespace Path
     bool FileHasExtension(const String &path);
     bool EnumerateDirectory(vector<String> fileNames);
 }
-
-
-class Command
-{
-public:
-	Command(String name, int regAs)
-	{
-		Exec::RegisterCommand(name, this, regAs);
-	}
-
-	virtual bool ExecCommand(StringVector params, String cmdline)
-	{
-		String ret;
-		if(ExecFunction(ret, params, cmdline))
-		{
-			_tcout << ret << endl;
-			return true;
-		}
-		return false;
-	}
-
-	virtual bool ExecFunction(String &rettext, StringVector params, String cmdline)
-	{
-		rettext.clear();
-		return true;
-	}
-
-	virtual bool SupportsPiping()
-	{
-		return false;
-	}
-};
