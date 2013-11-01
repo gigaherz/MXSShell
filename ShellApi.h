@@ -15,8 +15,8 @@ typedef vector<String> StringVector;
 
 enum RegisterAs
 {
-	RegisterAsCommand = 1,
-	RegisterAsFunction = 2,
+    RegisterAsCommand = 1,
+    RegisterAsFunction = 2,
 };
 
 // command.cpp
@@ -33,27 +33,27 @@ public:
 // main.cpp
 namespace Exec
 {
-	bool RegisterCommand(String name, Command* instance, int regAs);
-	bool FindProgram(String &dest, String name);
-	bool ExecCommand(StringVector params, String cmdline, String* _rettext = NULL);
-	bool Exit(StringVector params, String cmdline);
+    bool RegisterCommand(String name, Command* instance, int regAs);
+    bool FindProgram(String &dest, String name);
+    bool ExecCommand(StringVector params, String cmdline, String* _rettext = NULL);
+    bool Exit(StringVector params, String cmdline);
 }
 
 // environment.cpp
 namespace Environment
 {
-	bool GetVariable(String &dest, String envvar, String defval);
-	bool SetVariable( String varname, String value );
-	bool LoadCurrentDirectory(String &dest);
-	bool ChangeCurrrentDirectory(String NDir);
+    bool GetVariable(String &dest, String envvar, String defval);
+    bool SetVariable(String varname, String value);
+    bool LoadCurrentDirectory(String &dest);
+    bool ChangeCurrrentDirectory(String NDir);
 }
 
 // string.cpp
 namespace Str
 {
-	int  Replace(String &dest, String src, _TCHAR from, _TCHAR to);
-	void JoinVector(String &dest, StringVector data, size_t first, size_t last, int delim);
-	String::size_type SplitLine(StringVector &dest, String data, _TCHAR delim, bool keepQuotes=false);
+    int  Replace(String &dest, String src, _TCHAR from, _TCHAR to);
+    void JoinVector(String &dest, StringVector data, size_t first, size_t last, int delim);
+    String::size_type SplitLine(StringVector &dest, String data, _TCHAR delim, bool keepQuotes = false);
 }
 
 // string.cpp
