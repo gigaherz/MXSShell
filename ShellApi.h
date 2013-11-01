@@ -62,3 +62,10 @@ namespace Path
     bool FileHasExtension(const String &path);
     bool EnumerateDirectory(vector<String> fileNames);
 }
+
+// parse.cpp
+namespace Parse
+{
+    bool GetText(String &dest, String line, _TCHAR delim);
+    bool ParseLine(String &dest, String &src, _TCHAR delim);
+}

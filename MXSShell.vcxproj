@@ -105,6 +105,7 @@
     <ClCompile Include="exit.cpp" />
     <ClCompile Include="ls.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Parse.cpp" />
     <ClCompile Include="Path.cpp" />
     <ClCompile Include="pwd.cpp" />
     <ClCompile Include="Precompiled.cpp">

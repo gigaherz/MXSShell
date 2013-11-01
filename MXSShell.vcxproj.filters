@@ -60,6 +60,9 @@
     <ClCompile Include="Command.cpp">
       <Filter>Base</Filter>
     </ClCompile>
+    <ClCompile Include="Parse.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShellApi.h">
