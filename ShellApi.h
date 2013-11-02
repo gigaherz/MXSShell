@@ -46,6 +46,8 @@ namespace Environment
     bool SetVariable(String varname, String value);
     bool LoadCurrentDirectory(String &dest);
     bool ChangeCurrrentDirectory(String NDir);
+    void SetError(int error);
+    int GetError();
 }
 
 // string.cpp

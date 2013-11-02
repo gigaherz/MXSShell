@@ -52,6 +52,8 @@ int _tmain(int argc, _TCHAR* argv [])
 
     String PS;
     Environment::GetVariable(PS, _T("PROMPT"), _T("$pwd()$_(): "));
+    if (PS.size() == 0)
+        PS = _T("$pwd()$_(): ");
     Environment::SetVariable(_T("PROMPT"), PS);
 
     _tcout << "MXSS v0.2 by gigaherz" << endl << endl;

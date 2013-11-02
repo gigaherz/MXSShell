@@ -16,7 +16,8 @@ bool Win32PipeReader::ReadDelimited(String &dest, String delimiters, bool allowE
     if ((delimiters.size() == 0) && !allowEOF)
         return false;
 
-    for (;;) {
+    for (;;)
+    {
         static char dbuff[1024];
         static _TCHAR wbuff[1024];
         DWORD read;

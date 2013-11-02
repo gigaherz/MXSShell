@@ -40,40 +40,7 @@ public:
         {
             varname = params[1];
             Str::JoinVector(value, params, 2, params.size() - 1, _T(' '));
-            /*const _TCHAR *tline=text.c_str();
-            varname.clear();
-            while(*tline!=NULL)
-            {
-            _TCHAR ch=*(tline++);
-            if(((ch>=_T('a'))&&(ch<=_T('z')))||
-            ((ch>=_T('A'))&&(ch<=_T('Z')))||
-            (ch==_T('_')))
-            {
-            varname.append(1,ch);
-            }
-            else break;
-            }
-            tline--;
-            while(*tline!=NULL)
-            {
-            _TCHAR ch=*(tline++);
-            if((ch==_T('=')))
-            {
-            break;
-            }
-            else if(ch!=_T(' '))
-            {
-            cout << "Syntax error: Invalid character (expected '=')" << endl;
-            return false;
-            }
-            }
-            while(*tline!=NULL)
-            {
-            _TCHAR ch=*(tline++);
-            value.append(1,ch);
-            }*/
             Environment::SetVariable(varname, value);
-
         }
         return true;
     }

@@ -123,7 +123,6 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
         if (itf != functionIndex->end())
         {
             return itf->second->ExecFunction(*_rettext, params, cmdline);
-
         }
         else if (itc != commandIndex->end())
         {
@@ -140,7 +139,7 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
         }
         else if (itf != functionIndex->end())
         {
-            // do not allow executing a command externally if the same name is registered as a function		if(!FindProgram(prog,params[0]))
+            // do not allow executing a command externally if the same name is registered as a function
             _tcout << _T("Cannot execute '") << params[0] << _T("' as a command.") << endl;
             return false;
         }
@@ -214,6 +213,8 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
         return false;
     }
 
+    DWORD exitCode;
+
     if (asFunction)
     {
         Win32PipeReader stream(hRead);
@@ -221,14 +222,15 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
         {
             stream.ReadAvailableBytes(*_rettext);
 
-            DWORD exitCode;
             if (!GetExitCodeProcess(pi.hProcess, &exitCode))
             {
                 delete [] cls;
                 return false;
             }
+
             if (exitCode != STILL_ACTIVE)
             {
+                Environment::SetError(exitCode);
                 stream.ReadAvailableBytes(*_rettext);
                 break;
             }
@@ -238,6 +240,14 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
     {
         // Wait until child process exits.
         WaitForSingleObject(pi.hProcess, INFINITE);
+
+        if (!GetExitCodeProcess(pi.hProcess, &exitCode))
+        {
+            delete [] cls;
+            return false;
+        }
+
+        Environment::SetError(exitCode);
     }
 
     // Close process and thread handles. 

@@ -101,6 +101,7 @@
     <ClCompile Include="crlf.cpp" />
     <ClCompile Include="echo.cpp" />
     <ClCompile Include="Environment.cpp" />
+    <ClCompile Include="error.cpp" />
     <ClCompile Include="Exec.cpp" />
     <ClCompile Include="exit.cpp" />
     <ClCompile Include="ls.cpp" />
