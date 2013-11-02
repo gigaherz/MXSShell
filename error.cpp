@@ -20,7 +20,7 @@ public:
         }
         else
         {
-            Environment::SetError(_ttoi(params.at(1).c_str()));
+            Environment::SetError(_tcstol(params.at(1).c_str(), NULL, 0));
         }
 
         return true;

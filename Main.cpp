@@ -3,13 +3,12 @@
 using namespace std;
 
 bool Running;
-long ExitCode;
 
 bool Exec::Exit(StringVector params, String cmdline)
 {
     if (params.size() == 2)
     {
-        ExitCode = _tcstol(params[1].c_str(), NULL, 0);
+        Environment::SetError(_tcstol(params[1].c_str(), NULL, 0));
     }
     Running = false;
     return true;
@@ -48,7 +47,7 @@ int _tmain(int argc, _TCHAR* argv [])
     String Line;
 
     Running = true;
-    ExitCode = 0;
+    Environment::SetError(0);
 
     String PS;
     Environment::GetVariable(PS, _T("PROMPT"), _T("$pwd()$_(): "));
@@ -71,11 +70,11 @@ int _tmain(int argc, _TCHAR* argv [])
             if (!Running)
             {
                 if (!result) return 1;
-                return ExitCode;
+                return Environment::GetError();
             }
 
             if (_tcin.eof())
-                return ExitCode;
+                return Environment::GetError();
             else
                 Line.clear();
 
@@ -84,6 +83,6 @@ int _tmain(int argc, _TCHAR* argv [])
         else Line.append(1, Char);
     }
 
-    return ExitCode;
+    return Environment::GetError();
 }
 

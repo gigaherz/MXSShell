@@ -1,6 +1,11 @@
 #include "ShellApi.h"
 
-bool Path::FileHasExtension(const String &path)
+bool Path::FileExists(const String path)
+{
+    return ::PathFileExists(path.c_str()) != FALSE;
+}
+
+bool Path::FileHasExtension(const String path)
 {
     String::size_type a, b, c;
 

@@ -46,8 +46,8 @@ namespace Environment
     bool SetVariable(String varname, String value);
     bool LoadCurrentDirectory(String &dest);
     bool ChangeCurrrentDirectory(String NDir);
-    void SetError(int error);
-    int GetError();
+    void SetError(long error);
+    long GetError();
 }
 
 // string.cpp
@@ -61,7 +61,8 @@ namespace Str
 // string.cpp
 namespace Path
 {
-    bool FileHasExtension(const String &path);
+    bool FileExists(const String path);
+    bool FileHasExtension(const String path);
     bool EnumerateDirectory(vector<String> fileNames);
 }
 

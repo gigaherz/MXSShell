@@ -1,6 +1,6 @@
 #include "ShellApi.h"
 
-int lastError;
+long lastError;
 
 bool Environment::GetVariable(String &dest, String envvar, String defval)
 {
@@ -63,12 +63,12 @@ bool Environment::ChangeCurrrentDirectory(String NDir)
     return (::GetLastError() != 0);
 }
 
-void Environment::SetError(int error)
+void Environment::SetError(long error)
 {
     lastError = error;
 }
 
-int Environment::GetError()
+long Environment::GetError()
 {
     return lastError;
 }

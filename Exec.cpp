@@ -71,7 +71,7 @@ bool Exec::FindProgram(String &dest, String name)
                 cpath.append(1, _T('/'));
             cpath.append(name);
 
-            if (PathFileExists(cpath.c_str()))
+            if (Path::FileExists(cpath))
             {
                 dest.assign(cpath);
                 return true;
@@ -80,7 +80,6 @@ bool Exec::FindProgram(String &dest, String name)
     }
     else
     {
-
         for (auto pit : ppath)
         {
             for (auto eit : pext)
@@ -94,7 +93,7 @@ bool Exec::FindProgram(String &dest, String name)
                 cpath.append(name);
                 cpath.append(cext);
 
-                if (PathFileExists(cpath.c_str()))
+                if (Path::FileExists(cpath))
                 {
                     dest.assign(cpath);
                     return true;
@@ -182,7 +181,7 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
         sa.bInheritHandle = TRUE;
         sa.lpSecurityDescriptor = NULL;
 
-        if (!CreatePipe(&hRead, &hWrite, &sa, 0))
+        if (!::CreatePipe(&hRead, &hWrite, &sa, 0))
         {
             cout << "CreatePipe failed (" << GetLastError() << ")." << endl;
             return false;
@@ -204,7 +203,7 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
     _tcscpy_s(cls, cmdline.length() + 1, cmdline.c_str());
 
     // Start the child process. 
-    if (!CreateProcess(prog.c_str(), cls, NULL, NULL,
+    if (!::CreateProcess(prog.c_str(), cls, NULL, NULL,
         asFunction ? TRUE : FALSE, 0, NULL, NULL, &si, &pi)
         )
     {
@@ -222,7 +221,7 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
         {
             stream.ReadAvailableBytes(*_rettext);
 
-            if (!GetExitCodeProcess(pi.hProcess, &exitCode))
+            if (!::GetExitCodeProcess(pi.hProcess, &exitCode))
             {
                 delete [] cls;
                 return false;
@@ -239,9 +238,9 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
     else
     {
         // Wait until child process exits.
-        WaitForSingleObject(pi.hProcess, INFINITE);
+        ::WaitForSingleObject(pi.hProcess, INFINITE);
 
-        if (!GetExitCodeProcess(pi.hProcess, &exitCode))
+        if (!::GetExitCodeProcess(pi.hProcess, &exitCode))
         {
             delete [] cls;
             return false;
@@ -251,13 +250,13 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
     }
 
     // Close process and thread handles. 
-    CloseHandle(pi.hProcess);
-    CloseHandle(pi.hThread);
+    ::CloseHandle(pi.hProcess);
+    ::CloseHandle(pi.hThread);
 
     if (asFunction)
     {
-        CloseHandle(hRead);
-        CloseHandle(hWrite);
+        ::CloseHandle(hRead);
+        ::CloseHandle(hWrite);
     }
 
     delete [] cls;
