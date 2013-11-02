@@ -36,10 +36,6 @@ bool Path::EnumerateDirectory(StringVector fileNames)
         fileNames.push_back(ffd.cFileName);
     } while (FindNextFile(hFind, &ffd) != 0);
 
-    do
-    {
-    } while (FindNextFile(hFind, &ffd) != 0);
-
     DWORD dwError = GetLastError();
     if (dwError != ERROR_NO_MORE_FILES)
     {

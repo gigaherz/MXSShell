@@ -15,9 +15,6 @@
     <ClCompile Include="pwd.cpp">
       <Filter>InternalCmds</Filter>
     </ClCompile>
-    <ClCompile Include="Precompiled.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="echo.cpp">
       <Filter>InternalCmds</Filter>
     </ClCompile>
@@ -63,6 +60,7 @@
     <ClCompile Include="Parse.cpp">
       <Filter>Base</Filter>
     </ClCompile>
+    <ClCompile Include="Precompiled.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShellApi.h">

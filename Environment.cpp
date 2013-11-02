@@ -2,9 +2,11 @@
 
 bool Environment::GetVariable(String &dest, String envvar, String defval)
 {
-    static _TCHAR lstr[32768];
+    _TCHAR lstr[65536];
+
     SetLastError(0);
-    size_t lenv = GetEnvironmentVariable(envvar.c_str(), lstr, 32767);
+
+    size_t lenv = GetEnvironmentVariable(envvar.c_str(), lstr, 65535);
     int    lastError = GetLastError();
 
     if ((lenv == 0) && (lastError != 0))
@@ -20,7 +22,7 @@ bool Environment::GetVariable(String &dest, String envvar, String defval)
 
 bool Environment::SetVariable(String varname, String value)
 {
-    return (SetEnvironmentVariable(varname.c_str(), value.c_str()) != FALSE);
+    return SetEnvironmentVariable(varname.c_str(), value.c_str()) != FALSE;
 }
 
 bool Environment::LoadCurrentDirectory(String &dest)

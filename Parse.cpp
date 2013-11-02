@@ -5,11 +5,11 @@ using namespace std;
 bool Parse::GetText(String &dest, String line, _TCHAR delim)
 {
     dest.clear();
-    for (auto sit = line.begin(); sit != line.end(); sit++)
+    for (auto sit : line)
     {
-        if (*sit == delim)
+        if (sit == delim)
             return true;
-        dest.append(1, *sit);
+        dest.append(1, sit);
     }
 
     if (delim != 0)

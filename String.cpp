@@ -4,14 +4,14 @@ int Str::Replace(String &dest, String src, _TCHAR from, _TCHAR to)
 {
     int nr = 0;
     dest.clear();
-    for (String::const_iterator it = src.begin(); it != src.end(); it++)
+    for (auto ch : src)
     {
-        if (*it == from)
+        if (ch == from)
         {
             dest.append(1, to); nr++;
         }
         else
-            dest.append(1, *it);
+            dest.append(1, ch);
     }
     return nr;
 }
@@ -49,46 +49,47 @@ String::size_type Str::SplitLine(StringVector &dest, String data, _TCHAR delim, 
     int InAString = 0;
 
     elm.clear();
-    for (String::const_iterator dit = data.begin(); dit != data.end(); dit++)
+    for (auto ch : data)
     {
-        _TCHAR ch = *dit;
-
-        if (InAString == 2)
+        switch (InAString)
         {
+        case 2:
             if (ch == _T('\''))
             {
                 if (keepQuotes) elm.append(1, ch);
-                InAString = false;
+                InAString = 0;
             }
             else elm.append(1, ch);
-        }
-        if (InAString == 1)
-        {
+            break;
+        case 1:
             if (ch == _T('"'))
             {
                 if (keepQuotes) elm.append(1, ch);
-                InAString = false;
+                InAString = 0;
             }
             else elm.append(1, ch);
-        }
-        else
-        {
-            if (ch == _T('"'))
+            break;
+        default:
+            switch (ch)
             {
+            case _T('"'):
                 if (keepQuotes) elm.append(1, ch);
                 InAString = 1;
-            }
-            else if (ch == _T('\''))
-            {
+                break;
+            case _T('\''):
                 if (keepQuotes) elm.append(1, ch);
                 InAString = 2;
+                break;
+            default:
+                if (ch == delim)
+                {
+                    dest.push_back(elm);
+                    elm.clear();
+                }
+                else elm.append(1, ch);
+                break;
             }
-            else if (ch == delim)
-            {
-                dest.push_back(elm);
-                elm.clear();
-            }
-            else elm.append(1, ch);
+            break;
         }
     }
     dest.push_back(elm);

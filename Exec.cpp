@@ -24,6 +24,7 @@ bool Exec::RegisterCommand(String name, Command* instance, int regAs)
         if (commandIndex->find(name) != commandIndex->end())
             return false;
     }
+
     if (!!(regAs & RegisterAsFunction))
     {
         if (!functionIndex)
@@ -61,33 +62,33 @@ bool Exec::FindProgram(String &dest, String name)
     Str::SplitLine(ppath, path, _T(';'));
     Str::SplitLine(pext, exts, _T(';'));
 
-    if (Path::FileHasExtension(name) || (pext.size() == 0)) //do not attempt to add an extension
-    for (StringVector::iterator pit = ppath.begin(); pit != ppath.end(); pit++)
+    if (Path::FileHasExtension(name) || (pext.size() == 0))
     {
-        String cpath(*pit);
-        if ((cpath.at(cpath.size() - 1) != _T('/')) && (cpath.at(cpath.size() - 1) != _T('\\')))
-            //				cpath.append(1,_T('\\'));
-            cpath.append(1, _T('/'));
-        cpath.append(name);
-
-        if (PathFileExists(cpath.c_str()))
+        for (auto pit : ppath)
         {
-            dest.assign(cpath);
-            return true;
+            String cpath(pit);
+            if ((cpath.at(cpath.size() - 1) != _T('/')) && (cpath.at(cpath.size() - 1) != _T('\\')))
+                cpath.append(1, _T('/'));
+            cpath.append(name);
+
+            if (PathFileExists(cpath.c_str()))
+            {
+                dest.assign(cpath);
+                return true;
+            }
         }
     }
     else
     {
 
-        for (StringVector::iterator pit = ppath.begin(); pit != ppath.end(); pit++)
+        for (auto pit : ppath)
         {
-            for (StringVector::iterator eit = pext.begin(); eit != pext.end(); eit++)
+            for (auto eit : pext)
             {
-                String cpath(*pit);
-                String cext(*eit);
+                String cpath(pit);
+                String cext(eit);
 
                 if ((cpath.at(cpath.size() - 1) != _T('/')) && (cpath.at(cpath.size() - 1) != _T('\\')))
-                    //					cpath.append(1,_T('\\'));
                     cpath.append(1, _T('/'));
 
                 cpath.append(name);
@@ -204,17 +205,8 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
     _tcscpy_s(cls, cmdline.length() + 1, cmdline.c_str());
 
     // Start the child process. 
-    if (!CreateProcess(
-        prog.c_str(),		// No module name (use command line). 
-        cls,	// Command line. 
-        NULL,		// Process handle not inheritable. 
-        NULL,		// Thread handle not inheritable. 
-        asFunction ? TRUE : FALSE,
-        0,			// No creation flags. 
-        NULL,		// Use parent's environment block. 
-        NULL,		// Use parent's starting directory. 
-        &si,		// Pointer to STARTUPINFO structure.
-        &pi)		// Pointer to PROCESS_INFORMATION structure.
+    if (!CreateProcess(prog.c_str(), cls, NULL, NULL,
+        asFunction ? TRUE : FALSE, 0, NULL, NULL, &si, &pi)
         )
     {
         cout << "CreateProcess failed (" << GetLastError() << ")." << endl;
@@ -225,23 +217,8 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
     if (asFunction)
     {
         Win32PipeReader stream(hRead);
-        for (;;) {
-            /*static char dbuff[1024];
-            static _TCHAR wbuff[1024];
-            DWORD read;
-            if(!ReadFile(hRead,dbuff,1023,&read,NULL))
-            {
-            cout << "Pipe Read failed (" << GetLastError() << ")." << endl;
-            delete[] cls;
-            return false;
-            }
-            dbuff[read]=0;
-            if(read==0) break;
-
-            MultiByteToWideChar(CP_THREAD_ACP,0,dbuff,read,wbuff,1024);
-
-            rettext.append(wbuff);*/
-
+        for (;;)
+        {
             stream.ReadAvailableBytes(*_rettext);
 
             DWORD exitCode;
