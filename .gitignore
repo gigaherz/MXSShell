@@ -13,3 +13,5 @@ UpgradeLog*.xml
 *.suo
 *.idc
 *.old
+/*.opendb
+/*.db

@@ -8,7 +8,7 @@ bool Exec::Exit(StringVector params, String cmdline)
 {
     if (params.size() == 2)
     {
-        Environment::SetError(_tcstol(params[1].c_str(), NULL, 0));
+        Environment::SetError(_tcstol(params[1].c_str(), nullptr, 0));
     }
     Running = false;
     return true;

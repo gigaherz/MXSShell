@@ -9,7 +9,7 @@ public:
     }
 
     // if used without parameters, cd acts the same as pwd
-    virtual bool ExecCommand(StringVector params, String cmdline)
+    virtual bool ExecCommand(StringVector params, String cmdline) override
     {
         if (params.size() < 2)
         {
@@ -18,14 +18,12 @@ public:
             _tcout << CDir << endl;
             return true;
         }
-        else
-        {
-            return Environment::ChangeCurrrentDirectory(params[1]);
-        }
+
+        return Environment::ChangeCurrrentDirectory(params[1]);
     }
 
     // $cd is the same as $pwd
-    virtual bool ExecFunction(String &rettext, StringVector params, String cmdline)
+    virtual bool ExecFunction(String &rettext, StringVector params, String cmdline) override
     {
         Environment::LoadCurrentDirectory(rettext);
         return true;

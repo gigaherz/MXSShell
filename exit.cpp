@@ -8,7 +8,7 @@ public:
     {
     }
 
-    virtual bool ExecCommand(StringVector params, String cmdline)
+    virtual bool ExecCommand(StringVector params, String cmdline) override
     {
         return Exec::Exit(params, cmdline);
     }

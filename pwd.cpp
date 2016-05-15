@@ -8,7 +8,7 @@ public:
     {
     }
 
-    virtual bool ExecFunction(String &rettext, StringVector params, String cmdline)
+    virtual bool ExecFunction(String &rettext, StringVector params, String cmdline) override
     {
         Environment::LoadCurrentDirectory(rettext);
         return true;

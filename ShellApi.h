@@ -35,7 +35,7 @@ namespace Exec
 {
     bool RegisterCommand(String name, Command* instance, int regAs);
     bool FindProgram(String &dest, String name);
-    bool ExecCommand(StringVector params, String cmdline, String* _rettext = NULL);
+    bool ExecCommand(StringVector params, String cmdline, String* _rettext = nullptr);
     bool Exit(StringVector params, String cmdline);
 }
 

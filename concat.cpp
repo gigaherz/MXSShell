@@ -8,7 +8,7 @@ public:
     {
     }
 
-    virtual bool ExecFunction(String &rettext, StringVector params, String cmdline)
+    virtual bool ExecFunction(String &rettext, StringVector params, String cmdline) override
     {
         Str::JoinVector(rettext, params, 1, params.size() - 1, -1);
         return true;

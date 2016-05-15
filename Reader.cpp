@@ -23,7 +23,7 @@ bool Win32PipeReader::ReadDelimited(String &dest, String delimiters, bool allowE
         DWORD read;
         DWORD avail;
         bool isPeek = true;
-        if (!PeekNamedPipe(hReadEnd, dbuff, 1023, &read, &avail, NULL))
+        if (!PeekNamedPipe(hReadEnd, dbuff, 1023, &read, &avail, nullptr))
         {
             cout << "Pipe Read failed (" << GetLastError() << ")." << endl;
             return false;
@@ -32,7 +32,7 @@ bool Win32PipeReader::ReadDelimited(String &dest, String delimiters, bool allowE
         {
             isPeek = false;
             // Wait for more data
-            if (!ReadFile(hReadEnd, dbuff, 1, &read, NULL))
+            if (!ReadFile(hReadEnd, dbuff, 1, &read, nullptr))
             {
                 cout << "Pipe Read failed (" << GetLastError() << ")." << endl;
                 return false;
@@ -52,7 +52,7 @@ bool Win32PipeReader::ReadDelimited(String &dest, String delimiters, bool allowE
                 dest.append(wbuff);
                 if (isPeek)
                 {
-                    if (!ReadFile(hReadEnd, dbuff, nread, &read, NULL))
+                    if (!ReadFile(hReadEnd, dbuff, nread, &read, nullptr))
                     {
                         cout << "Pipe Read failed (" << GetLastError() << ")." << endl;
                         return false;
@@ -75,7 +75,7 @@ bool Win32PipeReader::ReadAvailableBytes(String &dest)
         DWORD read;
         DWORD avail;
 
-        if (!PeekNamedPipe(hReadEnd, NULL, 0, NULL, &avail, NULL))
+        if (!PeekNamedPipe(hReadEnd, nullptr, 0, nullptr, &avail, nullptr))
         {
             cout << "Pipe Read failed (" << GetLastError() << ")." << endl;
             return false;
@@ -87,7 +87,7 @@ bool Win32PipeReader::ReadAvailableBytes(String &dest)
         if (avail > 1024)
             avail = 1024;
 
-        if (!ReadFile(hReadEnd, dbuff, avail, &read, NULL))
+        if (!ReadFile(hReadEnd, dbuff, avail, &read, nullptr))
         {
             cout << "Pipe Read failed (" << GetLastError() << ")." << endl;
             return false;
@@ -107,7 +107,7 @@ int Win32PipeReader::GetAvailableBytes()
 {
     DWORD avail;
 
-    if (!PeekNamedPipe(hReadEnd, NULL, 0, NULL, &avail, NULL))
+    if (!PeekNamedPipe(hReadEnd, nullptr, 0, nullptr, &avail, nullptr))
     {
         cout << "Pipe Read failed (" << GetLastError() << ")." << endl;
         return -1;

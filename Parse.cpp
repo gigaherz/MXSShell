@@ -26,7 +26,7 @@ bool Parse::ParseLine(String &dest, String &src, _TCHAR delim)
     String tmp;
 
     dest.clear();
-    for (auto tline = src.c_str(); *tline != NULL; tline++)
+    for (auto tline = src.c_str(); *tline != 0; tline++)
     {
         _TCHAR ch = *tline;
 
@@ -58,6 +58,15 @@ bool Parse::ParseLine(String &dest, String &src, _TCHAR delim)
             tline += tmp.length();
             line.append(1, _T('\"'));
         }
+        else if (ch == _T('{'))
+        {
+            tline++;
+            line.append(1, _T('{'));
+            GetText(tmp, tline, _T('}'));
+            line.append(tmp);
+            tline += tmp.length();
+            line.append(1, _T('}'));
+        }
         else if (ch == _T('['))
         {
             String tmp2(++tline);
@@ -73,7 +82,7 @@ bool Parse::ParseLine(String &dest, String &src, _TCHAR delim)
     }
 
     dest.clear();
-    for (auto tline = line.c_str(); *tline != NULL; tline++)
+    for (auto tline = line.c_str(); *tline != 0; tline++)
     {
         _TCHAR ch = *tline;
 
@@ -155,7 +164,7 @@ bool Parse::ParseLine(String &dest, String &src, _TCHAR delim)
         else if (ch == _T('%'))
         {
             tmp.clear();
-            while (*tline != NULL)
+            while (*tline != 0)
             {
                 tline++;
                 ch = *tline;
@@ -177,7 +186,7 @@ bool Parse::ParseLine(String &dest, String &src, _TCHAR delim)
             StringVector params;
 
             tmp.clear();
-            while (*tline != NULL)
+            while (*tline != 0)
             {
                 ch = *(++tline);
                 if (((ch >= _T('a')) && (ch <= _T('z'))) ||
@@ -219,7 +228,7 @@ bool Parse::ParseLine(String &dest, String &src, _TCHAR delim)
             Exec::ExecCommand(params, tmp2, &tmp);
             dest.append(tmp);
 
-            if (tline == NULL) break;
+            if (tline == nullptr) break;
         }
         else
         {
@@ -236,4 +245,10 @@ bool Parse::ParseLine(String &dest, String &src, _TCHAR delim)
     }
     return true;
 
+}
+
+bool Parse::ParseBlock(String &src)
+{
+    String tmp;
+    ParseLine(tmp, src,
 }

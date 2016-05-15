@@ -64,6 +64,9 @@
     <ClCompile Include="error.cpp">
       <Filter>InternalCmds</Filter>
     </ClCompile>
+    <ClCompile Include="if.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShellApi.h">

@@ -8,7 +8,7 @@ public:
     {
     }
 
-    virtual bool ExecCommand(StringVector params, String cmdline)
+    virtual bool ExecCommand(StringVector params, String cmdline) override
     {
         if (params.size() > 2)
             return false;
@@ -20,13 +20,13 @@ public:
         }
         else
         {
-            Environment::SetError(_tcstol(params.at(1).c_str(), NULL, 0));
+            Environment::SetError(_tcstol(params.at(1).c_str(), nullptr, 0));
         }
 
         return true;
     }
 
-    virtual bool ExecFunction(String &rettext, StringVector params, String cmdline)
+    virtual bool ExecFunction(String &rettext, StringVector params, String cmdline) override
     {
         wchar_t buffer[20];
         int error = Environment::GetError();
@@ -39,4 +39,4 @@ public:
         return true;
     }
 
-} Pwd_Instance;
+} Error_Instance;

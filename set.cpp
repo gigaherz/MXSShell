@@ -8,7 +8,7 @@ public:
     {
     }
 
-    virtual bool ExecCommand(StringVector params, String cmdline)
+    virtual bool ExecCommand(StringVector params, String cmdline) override
     {
         String text;
         String varname;
@@ -17,13 +17,13 @@ public:
 
         if (text.length() == 0)
         {
-            _TCHAR *env = (_TCHAR*) GetEnvironmentStrings();
-            _TCHAR *ptr = env;
+            auto env = static_cast<_TCHAR*>(GetEnvironmentStrings());
+            auto ptr = env;
 
-            while (*ptr != NULL)
+            while (*ptr != 0)
             {
                 value.clear();
-                while (*ptr != NULL)
+                while (*ptr != 0)
                 {
                     value.append(1, *(ptr++));
                 }

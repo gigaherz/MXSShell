@@ -9,8 +9,8 @@ const String defexts(_T(".CMD;.BAT;.EXE"));
 const String defpath(_T("."));
 
 // They need to be pointers because C++ does not have a defined static initialization order.
-map<String, Command*>* commandIndex = NULL;
-map<String, Command*>* functionIndex = NULL;
+map<String, Command*>* commandIndex = nullptr;
+map<String, Command*>* functionIndex = nullptr;
 
 bool Exec::RegisterCommand(String name, Command* instance, int regAs)
 {
@@ -110,7 +110,7 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
     String prog;
     String cline(cmdline);
 
-    bool asFunction = _rettext != NULL;
+    bool asFunction = _rettext != nullptr;
 
     auto itc = commandIndex->find(params[0]);
     auto itf = functionIndex->find(params[0]);
@@ -179,7 +179,7 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
         SECURITY_ATTRIBUTES sa;
         sa.nLength = sizeof(sa);
         sa.bInheritHandle = TRUE;
-        sa.lpSecurityDescriptor = NULL;
+        sa.lpSecurityDescriptor = nullptr;
 
         if (!::CreatePipe(&hRead, &hWrite, &sa, 0))
         {
@@ -203,8 +203,8 @@ bool Exec::ExecCommand(StringVector params, String cmdline, String* _rettext)
     _tcscpy_s(cls, cmdline.length() + 1, cmdline.c_str());
 
     // Start the child process. 
-    if (!::CreateProcess(prog.c_str(), cls, NULL, NULL,
-        asFunction ? TRUE : FALSE, 0, NULL, NULL, &si, &pi)
+    if (!::CreateProcess(prog.c_str(), cls, nullptr, nullptr,
+        asFunction ? TRUE : FALSE, 0, nullptr, nullptr, &si, &pi)
         )
     {
         cout << "CreateProcess failed (" << GetLastError() << ")." << endl;
