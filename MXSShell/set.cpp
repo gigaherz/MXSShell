@@ -8,7 +8,7 @@ public:
     {
     }
 
-    virtual bool ExecCommand(StringVector params, String cmdline) override
+    bool ExecCommand(StringVector params, String cmdline) override
     {
         String text;
         String varname;

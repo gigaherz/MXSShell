@@ -20,7 +20,7 @@ bool Parse::GetText(String &dest, String line, _TCHAR delim)
     return true;
 }
 
-bool Parse::ParseLine(String &dest, String &src, _TCHAR delim)
+bool Parse::ParseLine(String &dest, String &src, _TCHAR delim1, _TCHAR delim2)
 {
     String line;
     String tmp;
@@ -86,7 +86,7 @@ bool Parse::ParseLine(String &dest, String &src, _TCHAR delim)
     {
         _TCHAR ch = *tline;
 
-        if (ch == delim)
+        if (ch == delim1 || ch == delim2)
         {
             src.assign(tline);
             return true;
@@ -238,7 +238,7 @@ bool Parse::ParseLine(String &dest, String &src, _TCHAR delim)
 
     src.clear();
 
-    if (delim != 0)
+    if (delim1 != 0)
     {
         _tcout << "Syntax Error: Unexpected End of Line." << endl;
         return false;
@@ -250,5 +250,5 @@ bool Parse::ParseLine(String &dest, String &src, _TCHAR delim)
 bool Parse::ParseBlock(String &src)
 {
     String tmp;
-    ParseLine(tmp, src,
+    return ParseLine(tmp, src, _T('}'));
 }

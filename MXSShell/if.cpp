@@ -15,7 +15,7 @@ public:
         if (params.size() != 3)
             return false;
 
-        auto condition = params.at(1);
+        const auto condition = params.at(1);
 
         ifCondition = true;
 

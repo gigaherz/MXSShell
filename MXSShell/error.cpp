@@ -8,7 +8,7 @@ public:
     {
     }
 
-    virtual bool ExecCommand(StringVector params, String cmdline) override
+    bool ExecCommand(StringVector params, String cmdline) override
     {
         if (params.size() > 2)
             return false;
@@ -26,7 +26,7 @@ public:
         return true;
     }
 
-    virtual bool ExecFunction(String &rettext, StringVector params, String cmdline) override
+    bool ExecFunction(String &rettext, StringVector params, String cmdline) override
     {
         wchar_t buffer[20];
         int error = Environment::GetError();

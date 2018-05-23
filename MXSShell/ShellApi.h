@@ -24,6 +24,7 @@ class Command
 {
 public:
     Command(String name, int regAs);
+    virtual ~Command() = default;
     virtual bool ExecCommand(StringVector params, String cmdline);
     virtual bool ExecFunction(String &rettext, StringVector params, String cmdline);
     virtual bool SupportsPiping();
@@ -70,5 +71,6 @@ namespace Path
 namespace Parse
 {
     bool GetText(String &dest, String line, _TCHAR delim);
-    bool ParseLine(String &dest, String &src, _TCHAR delim);
+    bool ParseLine(String &dest, String &src, _TCHAR delim1=0, _TCHAR delim2=0);
+    bool ParseBlock(String &src);
 }

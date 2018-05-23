@@ -11,7 +11,7 @@ public:
     }
 
     // if used as a command, ls lists the contents of the directory
-    virtual bool ExecCommand(StringVector params, String cmdline) override
+    bool ExecCommand(StringVector params, String cmdline) override
     {
         vector<String> fileNames;
 
@@ -27,7 +27,7 @@ public:
     }
 
     // if used as a function, ls returns the list as a string
-    virtual bool ExecFunction(String &rettext, StringVector params, String cmdline) override
+    bool ExecFunction(String &rettext, StringVector params, String cmdline) override
     {
         vector<String> fileNames;
 
