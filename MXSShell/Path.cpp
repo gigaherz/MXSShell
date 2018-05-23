@@ -1,4 +1,4 @@
-#include "ShellApi.h"
+#include "Main.h"
 
 bool Path::FileExists(const String path)
 {

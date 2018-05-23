@@ -59,7 +59,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <PrecompiledHeaderFile>ShellApi.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>Main.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)\Base;$(ProjectDir)\Streaming;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -81,7 +81,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <PrecompiledHeaderFile>ShellApi.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>Main.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)\Base;$(ProjectDir)\Streaming;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -95,33 +95,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cmds\cd.cpp" />
-    <ClCompile Include="Base\Command.cpp" />
-    <ClCompile Include="Cmds\concat.cpp" />
-    <ClCompile Include="Cmds\crlf.cpp" />
-    <ClCompile Include="Cmds\echo.cpp" />
-    <ClCompile Include="Base\Environment.cpp" />
-    <ClCompile Include="Cmds\error.cpp" />
-    <ClCompile Include="Base\Exec.cpp" />
-    <ClCompile Include="Cmds\exit.cpp" />
-    <ClCompile Include="Cmds\if.cpp" />
-    <ClCompile Include="Cmds\ls.cpp" />
-    <ClCompile Include="Base\Main.cpp" />
-    <ClCompile Include="Base\Parse.cpp" />
-    <ClCompile Include="Base\Path.cpp" />
-    <ClCompile Include="Cmds\pwd.cpp" />
+    <ClCompile Include="cmds\cd.cpp" />
+    <ClCompile Include="Command.cpp" />
+    <ClCompile Include="cmds\concat.cpp" />
+    <ClCompile Include="cmds\crlf.cpp" />
+    <ClCompile Include="cmds\echo.cpp" />
+    <ClCompile Include="Environment.cpp" />
+    <ClCompile Include="cmds\error.cpp" />
+    <ClCompile Include="Exec.cpp" />
+    <ClCompile Include="cmds\exit.cpp" />
+    <ClCompile Include="cmds\if.cpp" />
+    <ClCompile Include="cmds\ls.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Parse.cpp" />
+    <ClCompile Include="Path.cpp" />
+    <ClCompile Include="cmds\pwd.cpp" />
     <ClCompile Include="Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Cmds\set.cpp" />
-    <ClCompile Include="Streaming\Reader.cpp" />
-    <ClCompile Include="Base\String.cpp" />
+    <ClCompile Include="cmds\set.cpp" />
+    <ClCompile Include="Reader.cpp" />
+    <ClCompile Include="String.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Base\ShellApi.h" />
-    <ClInclude Include="Streaming\Streaming.h" />
-    <ClInclude Include="Base\UnicodeStuff.h" />
+    <ClInclude Include="Main.h" />
+    <ClInclude Include="Streaming.h" />
+    <ClInclude Include="UnicodeStuff.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,4 @@
-#include "ShellApi.h"
+#include "Main.h"
 
 Command::Command(String name, int regAs)
 {

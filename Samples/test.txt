@@ -1,0 +1,12 @@
+echo Hello!
+crlf
+echo Hi!
+
+cd
+pwd
+cd ..
+pwd
+ls
+
+echo %PATH
+set %PATH

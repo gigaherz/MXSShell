@@ -1,4 +1,4 @@
-#include "ShellApi.h"
+#include "Main.h"
 
 class CrlfCommand : public Command
 {

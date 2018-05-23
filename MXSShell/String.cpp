@@ -1,4 +1,4 @@
-#include "ShellApi.h"
+#include "Main.h"
 
 int Str::Replace(String &dest, String src, _TCHAR from, _TCHAR to)
 {
