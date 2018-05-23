@@ -33,7 +33,7 @@ bool Environment::LoadCurrentDirectory(String &dest)
 {
     static _TCHAR lstr[32768];
     ::SetLastError(0);
-    size_t lenv = ::GetCurrentDirectory(32767, lstr);
+    size_t lenv = ::GetCurrentDirectory(_countof(lstr), lstr);
     int    lastError = ::GetLastError();
 
     if ((lenv == 0) && (lastError != 0))

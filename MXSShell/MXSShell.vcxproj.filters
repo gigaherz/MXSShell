@@ -12,70 +12,70 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pwd.cpp">
-      <Filter>InternalCmds</Filter>
-    </ClCompile>
-    <ClCompile Include="echo.cpp">
-      <Filter>InternalCmds</Filter>
-    </ClCompile>
-    <ClCompile Include="Environment.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Exec.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Path.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
-    <ClCompile Include="String.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
-    <ClCompile Include="cd.cpp">
-      <Filter>InternalCmds</Filter>
-    </ClCompile>
-    <ClCompile Include="set.cpp">
-      <Filter>InternalCmds</Filter>
-    </ClCompile>
-    <ClCompile Include="crlf.cpp">
-      <Filter>InternalCmds</Filter>
-    </ClCompile>
-    <ClCompile Include="concat.cpp">
-      <Filter>InternalCmds</Filter>
-    </ClCompile>
-    <ClCompile Include="exit.cpp">
-      <Filter>InternalCmds</Filter>
-    </ClCompile>
-    <ClCompile Include="Reader.cpp">
-      <Filter>Streaming</Filter>
-    </ClCompile>
-    <ClCompile Include="ls.cpp">
-      <Filter>InternalCmds</Filter>
-    </ClCompile>
-    <ClCompile Include="Command.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Parse.cpp">
-      <Filter>Base</Filter>
-    </ClCompile>
     <ClCompile Include="Precompiled.cpp" />
-    <ClCompile Include="error.cpp">
+    <ClCompile Include="Cmds\cd.cpp">
       <Filter>InternalCmds</Filter>
     </ClCompile>
-    <ClCompile Include="if.cpp">
+    <ClCompile Include="Cmds\crlf.cpp">
       <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="Cmds\echo.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="Cmds\error.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="Cmds\exit.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="Cmds\if.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="Cmds\ls.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="Cmds\pwd.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="Cmds\set.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="Cmds\concat.cpp">
+      <Filter>InternalCmds</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Command.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Environment.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Exec.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Main.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Parse.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Path.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\String.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Streaming\Reader.cpp">
+      <Filter>Streaming</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ShellApi.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Streaming.h">
+    <ClInclude Include="Streaming\Streaming.h">
       <Filter>Streaming</Filter>
     </ClInclude>
-    <ClInclude Include="UnicodeStuff.h">
+    <ClInclude Include="Base\ShellApi.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\UnicodeStuff.h">
       <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>

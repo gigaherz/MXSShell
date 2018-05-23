@@ -3,6 +3,8 @@
 /ipch
 /_UpgradeReport_Files
 /_ReSharper.*
+/MXSShell/Debug
+/MXSShell/Release
 
 UpgradeLog*.xml
 
