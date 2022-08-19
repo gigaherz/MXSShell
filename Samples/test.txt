@@ -1,6 +1,5 @@
 echo Hello!
-crlf
-echo Hi!
+echo Hi! $_ Hi2!
 
 cd
 pwd
@@ -10,3 +9,4 @@ ls
 
 echo %PATH
 set %PATH
+

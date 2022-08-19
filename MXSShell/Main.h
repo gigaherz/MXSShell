@@ -64,7 +64,7 @@ namespace Path
 {
     bool FileExists(const String path);
     bool FileHasExtension(const String path);
-    bool EnumerateDirectory(vector<String> fileNames);
+    bool EnumerateDirectory(StringVector& fileNames);
 }
 
 // parse.cpp

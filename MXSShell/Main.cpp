@@ -23,12 +23,12 @@ bool ExecLine(String line)
     String tmp(line);
     String parsed;
     String command;
-    bool result = Parse::ParseLine(parsed, tmp, 0);
+    const bool result = Parse::ParseLine(parsed, tmp, 0);
     if (!result) return false;
 
     command.assign(parsed);
     StringVector params;
-    String::size_type argc = Str::SplitLine(params, parsed, ' ');
+    const String::size_type argc = Str::SplitLine(params, parsed, ' ');
     if (argc <= 0) return false;
 
     return Exec::ExecCommand(params, command);
@@ -40,7 +40,7 @@ void Prompt()
     Environment::GetVariable(PS, _T("PROMPT"), _T(": "));
 
     String parsed;
-    bool result = Parse::ParseLine(parsed, PS, 0);
+    const bool result = Parse::ParseLine(parsed, PS, 0);
 
     _tcout << parsed;
 }
@@ -95,7 +95,6 @@ void ExecuteFile(String file)
     String Line;
 
     Line.clear();
-    Prompt();
 
     // TODO: Detect and handle file encoding (ASCII, UTF-8, UTF-16LE/BE, UTF-32LE/BE)
     ifstream input(file, std::ios::binary);
@@ -104,31 +103,48 @@ void ExecuteFile(String file)
     {
         input.get(Char);
 
-        if ((Char == _T('\n')) || input.eof())
+        if (Char == _T('\r') || Char == _T('\n') || input.eof())
         {
-            bool result = ExecLine(Line);
-            if (!Running)
+            if (Line.size() > 0)
             {
-                if (!result) Environment::SetError(1);
-                return;
+                bool result = ExecLine(Line);
+                if (!Running)
+                {
+                    if (!result) Environment::SetError(1);
+                    return;
+                }
+
+                if (input.eof())
+                    return;
+
+                Line.clear();
             }
-
-            if (input.eof())
-                return;
-
-            Line.clear();
-            Prompt();
         }
         else Line.append(1, Char);
     }
 }
 
+
+
 int _tmain(int argc, _TCHAR* argv [])
 {
+    bool interactive = true;
+    String scriptPath; // = _T("D:\\Projects\\MxSShell2\\Samples\\test.txt");
+
+    // TODO: Improve commandline parameters
+    if (argc > 1)
+    {
+        scriptPath = argv[1];
+        interactive = false;
+    }
+
     Running = true;
     Environment::SetError(0);
-
-    Interactive();
+    
+    if (interactive)
+        Interactive();
+    else
+        ExecuteFile(scriptPath);
 
     return Environment::GetError();
 }
